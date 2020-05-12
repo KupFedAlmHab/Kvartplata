@@ -1,20 +1,9 @@
 package plata;
 //добавл€ем библиотеки дл€ работы с текстовыми пол€ми, метками
 //дл€ создани€ графического окна
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
 //√лавный класс, реализующий интерфейс ActionListener
@@ -143,133 +132,6 @@ public class plata implements ActionListener{
         return btn;
     }
 
-
-    //метод расчета
-    public void kvartira() throws Exception{
-        double c = 0;
-        double h = 0;
-        double s = 0;
-        double g = 0;
-        double k = 0;
-        double vg = 0;
-        double vh = 0;
-        double vc = 0;
-        double vs = 0;
-        double u = 0;
-        double d = 0;
-        double p = 0;
-        double q1 = 0;
-        double q2 = 0;
-        double q3 = 0;
-        double q4 = 0;
-        double q5 = 0;
-        double summa = 0;
-
-
-        for (int i=0; i < 18; i++) {
-            if (arrTf[i].getText().length() == 0) {
-                arrTf[i].setText(" ");
-            }
-        }
-
-
-        if (!arrTf[0].getText().equals(" ")) {
-            c = Double.valueOf(arrTf[0].getText()); //cold water
-        }
-        if (!arrTf[1].getText().equals(" ")) {
-            h = Double.valueOf(arrTf[1].getText()); //hot water
-        }
-        if (!arrTf[2].getText().equals(" ")) {
-            s = Double.valueOf(arrTf[2].getText()); //svet
-        }
-        if (!arrTf[3].getText().equals(" ")) {
-            g = Double.valueOf(arrTf[3].getText()); //gas
-        }
-        if (!arrTf[4].getText().equals(" ")) {
-            k = Double.valueOf(arrTf[4].getText()); //kolichestvo projivayuchih
-        }
-        if (!arrTf[5].getText().equals(" ")) {
-            vg = Double.valueOf(arrTf[5].getText()); //v potrachennogo gasa
-        }
-        if (!arrTf[6].getText().equals(" ")) {
-            vh = Double.valueOf(arrTf[6].getText()); //v potrachennogo hot water
-        }
-        if (!arrTf[7].getText().equals(" ")) {
-            vc = Double.valueOf(arrTf[7].getText()); //v potrachennogo cold water
-        }
-        if (!arrTf[8].getText().equals(" ")) {
-            vs = Double.valueOf(arrTf[8].getText()); //v potrachennogo svet
-        }
-        if (!arrTf[9].getText().equals(" ")) {
-            u = Double.valueOf(arrTf[9].getText()); //kommunalnye uslugy
-        }
-        if (!arrTf[10].getText().equals(" ")) {
-            d = Double.valueOf(arrTf[10].getText()); //dolg
-        }
-        if (!arrTf[11].getText().equals(" ")) {
-            p = Double.valueOf(arrTf[11].getText());//pereplata
-        }
-        if (!arrTf[12].getText().equals(" ")) {
-            q1 = Double.valueOf(arrTf[12].getText());
-        }
-        if (!arrTf[13].getText().equals(" ")) {
-            q2 = Double.valueOf(arrTf[13].getText());
-        }
-        if (!arrTf[14].getText().equals(" ")) {
-            q3 = Double.valueOf(arrTf[14].getText());
-        }
-        if (!arrTf[15].getText().equals(" ")) {
-            q4 = Double.valueOf(arrTf[15].getText());
-        }
-        if (!arrTf[16].getText().equals(" ")) {
-            q5 = Double.valueOf(arrTf[16].getText());
-        }
-        
-
-
-        if ((c != 0) & (vc != 0)) {
-            q1 = c*vc; //Cena na cold water
-            arrTf[12].setText(String.format("%.2f", q1)); //выводим цену в 13 т.п.
-        }
-        else {
-            arrTf[12].setText(" "); //выводим цену в 13 т.п.
-        }
-        if ((h != 0) & (vh != 0)) {
-            q2 = h*vh; //Cena na hot water
-            arrTf[13].setText(String.format("%.2f", q2)); //выводим цену в 14 т.п.
-        }
-        else {
-            arrTf[13].setText(" "); //выводим цену в 14 т.п.
-        }
-        if ((g != 0) & (vg != 0)) {
-            q3 = g*vg; //Cena na gas
-            arrTf[14].setText(String.format("%.2f", q3)); //выводим цену в 15 т.п.
-        }
-        else {
-            arrTf[14].setText(" "); //выводим цену в 15 т.п.
-        }
-        if ((s != 0) & (vs != 0)) {
-            q4 = s*vs; //Cena na svet
-            arrTf[15].setText(String.format("%.2f", q4)); //выводим цену в 16 т.п.
-        }
-        else {
-            arrTf[15].setText(" "); //выводим цену в 16 т.п.
-        }
-        if ((k != 0) & (u != 0)) {
-            q5 = k*u; //Cena na kommunalnye uslugy
-            arrTf[16].setText(String.format("%.2f", q5)); //выводим цену в 17 т.п.
-        }
-        else {
-            arrTf[16].setText(" "); //выводим цену в 17 т.п.
-        }
-        if ((q1 != 0) || (q2 != 0) || (q3 != 0) || (q4 != 0) || (q5 != 0) || (d >= 0) || (p >= 0)) {
-            summa = q1+q2+q3+q4+q5+d-p; //summa
-            arrTf[17].setText(String.format("%.2f", summa));  //выводим цену в 18 т.п.
-        }
-        else {
-            arrTf[17].setText(" ");  //выводим цену в 18 т.п.
-        }
-    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -278,26 +140,14 @@ public class plata implements ActionListener{
             }
         });
     }
-    //ћетод обработки событи€ нажати€ на кнопку
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //узнаем им€ кнопки, на которую нажали
-        if (e.getActionCommand().equals("–асчет")) {
-            try {
-                //выполн€ем расчет
-                kvartira();
 
-            } catch (Exception ex) {
 
-                JOptionPane.showMessageDialog(null, "ѕроверьте правильность ввода");
-            }
-
-        }else{
-            //очищаем все пол€
-            for(int i=0; i<arrTf.length; i++){
-                arrTf[i].setText("");
-            }
-        }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+   
     }
-}
+
 
