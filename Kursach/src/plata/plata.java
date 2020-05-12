@@ -42,12 +42,6 @@ public class plata implements ActionListener{
         addLabel(panelLeft, "Жилищные услуги:", Color.RED);
         addLabel(panelLeft, "Долг за прошлый месяц:", Color.RED);
         addLabel(panelLeft, "Переплата с прошлого месяца:", Color.RED);
-        addLabel(panelLeft, "Подсчет холодной воды:", Color.BLUE);
-        addLabel(panelLeft, "Подсчет горячей воды:", Color.BLUE);
-        addLabel(panelLeft, "Подсчет газа:", Color.BLUE);
-        addLabel(panelLeft, "Подсчет света:", Color.BLUE);
-        addLabel(panelLeft, "Подсчет жилищных услуг:", Color.BLUE);
-        addLabel(panelLeft, "Общая сумма:", Color.BLUE);
         //добавляем текстовые поля через цикл и записываем их в массив
         for(int i=0; i<arrTf.length; i++){
             if(arrTf.length>=0){
@@ -58,9 +52,9 @@ public class plata implements ActionListener{
 
 
         //добавляем кнопки расчета и сброса
-        JButton calc = addButton(panelBottom, "Расчет");
+        JButton plata = addButton(panelBottom, "Расчет");
         //добавляем слушатель на событие нажатия
-        calc.addActionListener(this);
+        plata.addActionListener(this);
         JButton reset = addButton(panelBottom, "Сброс");
         //добавляем слушатель на событие нажатия
         reset.addActionListener(this);
@@ -73,7 +67,7 @@ public class plata implements ActionListener{
         //устанавливаем начальное положение относительно центра экрана (по центру)
         frame.setLocationRelativeTo(null);
         //Устанавливаем размер главного окна(400 на 450)
-        frame.setSize(400,450);
+        frame.setSize(400,305);
         //Добавляем метку с информацией к работе в самый верх окна
         JLabel top = new JLabel("Красные поля являются обязательными для заполнения");
         //устанавливаем выравнивание текста в метке по центру
@@ -118,13 +112,13 @@ public class plata implements ActionListener{
     }
 
     //метод добавления кнопок
-    public JButton addButton(JComponent container, String name){
+   public JButton addButton(JComponent container, String name){
         //Создаем кнопку
-        JButton btn = new JButton(name);
+       JButton btn = new JButton(name);
         //Устанавливаем максимально допустимый размер
-        btn.setMaximumSize(new Dimension(100,20));
+       btn.setMaximumSize(new Dimension(100,20));
         //Выравниваем по горизонтали по центру
-        btn.setHorizontalAlignment(JButton.CENTER);
+       btn.setHorizontalAlignment(JButton.CENTER);
 
         //добавляем кнопку на панель
         container.add(btn);
@@ -214,29 +208,30 @@ public class plata implements ActionListener{
   		if ((q1 != 0) || (q2 != 0) || (q3 != 0) || (q4 != 0) || (q5 != 0) || (d >= 0) || (p >= 0)) {
   			summa = q1 + q2 + q3 + q4 + q5 + d - p; // summa
   	}
-  			
+  		new Result(q1,  q2,  q3,  q4,  q5,  summa);	
   	}
   	public static void main(String[] args) {
 		new Auto();
 }
-  //Метод обработки события нажатия на кнопку
-  	@Override
-  	public void actionPerformed(ActionEvent e) {
-  //узнаем имя кнопки, на которую нажали
-  		if (e.getActionCommand().equals("Расчет")) {
-  			try {
-  				//выполняем расчет
-  								kvartira();
-  								
-  							} catch (Exception ex) {
-  								JOptionPane.showMessageDialog(null, "Проверьте правильность ввода");
-  							}
+  	
+//Метод обработки события нажатия на кнопку
+@Override
+public void actionPerformed(ActionEvent e) {
+//узнаем имя кнопки, на которую нажали
+if (e.getActionCommand().equals("Расчет")) {
+	try {
+		//выполняем расчет
+						kvartira();
+						
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Проверьте правильность ввода");
+					}
 
-  		} else {
-  //очищаем все поля
-  			for (int i = 0; i < arrTf.length; i++) {
-  				arrTf[i].setText("");
-  			}
-  		}
-  	}
-  }
+} else {
+//очищаем все поля
+	for (int i = 0; i < arrTf.length; i++) {
+		arrTf[i].setText("");
+	}
+}
+}
+}
