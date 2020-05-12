@@ -93,7 +93,7 @@ public class plata implements ActionListener{
     public void addLabel(JComponent container, String name, Color color){
         //создаем тестовую метку с именем name
         JLabel lb = new JLabel(name);
-        //устанавливаем максимально допустимый размер
+        //устанавливаем максимально допустимый
         lb.setMaximumSize(new Dimension(400,20));
         //устанавливаем цвета текста
         lb.setForeground(color);
