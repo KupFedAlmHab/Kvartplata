@@ -217,32 +217,26 @@ public class plata implements ActionListener{
   			
   	}
   	public static void main(String[] args) {
-  		SwingUtilities.invokeLater(new Runnable() {
-  		@Override
-  		public void run() {
-  		new plata();
-  		}
-  		});
-  		}
-  		//Метод обработки события нажатия на кнопку
-  		@Override
-  		public void actionPerformed(ActionEvent e) {
-  		//узнаем имя кнопки, на которую нажали
+		new Auto();
+}
+  //Метод обработки события нажатия на кнопку
+  	@Override
+  	public void actionPerformed(ActionEvent e) {
+  //узнаем имя кнопки, на которую нажали
   		if (e.getActionCommand().equals("Расчет")) {
-  		try {
-  		//выполняем расчет
-  		kvartira();
+  			try {
+  				//выполняем расчет
+  								kvartira();
+  								
+  							} catch (Exception ex) {
+  								JOptionPane.showMessageDialog(null, "Проверьте правильность ввода");
+  							}
 
-  		} catch (Exception ex) {
-
-  		JOptionPane.showMessageDialog(null, "Проверьте правильность ввода");
+  		} else {
+  //очищаем все поля
+  			for (int i = 0; i < arrTf.length; i++) {
+  				arrTf[i].setText("");
+  			}
   		}
-
-  		}else{
-  		//очищаем все поля
-  		for(int i=0; i<arrTf.length; i++){
-  		arrTf[i].setText("");
-  		}
-  		}
-  		}
-  		}
+  	}
+  }
